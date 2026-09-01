@@ -1,0 +1,50 @@
+[
+  {
+    "code": "BRONZE",
+    "name": "Bronze",
+    "monthly_contribution_usd": 25,
+    "coverage_level": "Couverture de base",
+    "advantages": [
+      "Consultations",
+      "Premiers soins",
+      "Réduction des frais médicaux",
+      "Orientation sanitaire"
+    ]
+  },
+  {
+    "code": "ARGENT",
+    "name": "Argent",
+    "monthly_contribution_usd": 50,
+    "coverage_level": "Couverture intermédiaire",
+    "advantages": [
+      "Consultations",
+      "Examens de base",
+      "Prise en charge partielle des hospitalisations"
+    ]
+  },
+  {
+    "code": "OR",
+    "name": "Or",
+    "monthly_contribution_usd": 75,
+    "coverage_level": "Couverture étendue",
+    "advantages": [
+      "Consultations",
+      "Examens",
+      "Hospitalisations partielles",
+      "Médicaments essentiels"
+    ]
+  },
+  {
+    "code": "PLATINE",
+    "name": "Platine",
+    "monthly_contribution_usd": 100,
+    "coverage_level": "Couverture médicale la plus complète",
+    "advantages": [
+      "Consultations",
+      "Examens",
+      "Hospitalisation",
+      "Médicaments essentiels",
+      "Urgences"
+    ]
+  }
+]

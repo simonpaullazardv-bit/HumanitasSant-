@@ -1,0 +1,151 @@
+{
+  "site": {
+    "name": "Mutuelle de Santé HUMANITAS",
+    "subtitle": "Centre de Bien-Être",
+    "slogan": "La santé pour tous, la solidarité garantie !",
+    "legal_context": "Initiative de Lumen Pacis Humanitas (LPH), à présenter comme structure porteuse selon les éléments institutionnels fournis."
+  },
+  "presentation": {
+    "title": "Présentation générale",
+    "text": "La Mutuelle de Santé HUMANITAS est une initiative à vocation solidaire portée dans l'esprit de l'action humanitaire de Lumen Pacis Humanitas (LPH). Elle vise à faciliter l'accès à des soins de santé de qualité, à promouvoir la prévention et le bien-être, et à accompagner les familles, les entreprises et les communautés."
+  },
+  "historique": {
+    "title": "Historique",
+    "text": "Humanitas Santé s'inscrit dans la dynamique humanitaire et sociale de Lumen Pacis Humanitas. Le projet de mutuelle est conçu comme une réponse solidaire aux difficultés d'accès aux soins, avec une approche fondée sur la mutualisation, la proximité, la prévention et la dignité humaine. Son développement associe progressivement la couverture santé, les services de bien-être et un réseau de partenaires sanitaires. Les dates et jalons officiels pourront être complétés ultérieurement à partir des documents institutionnels validés.",
+    "validation_note": "Texte volontairement sans dates inventées : compléter avec les dates officielles lors de leur validation."
+  },
+  "vision": {
+    "title": "Notre vision",
+    "text": "Construire une communauté où chaque personne peut accéder à une protection sanitaire fiable, accessible et digne, tout en développant une culture durable de prévention, de solidarité et de bien-être."
+  },
+  "mission": {
+    "title": "Notre mission",
+    "text": "Permettre au plus grand nombre d'accéder à des soins de santé de qualité grâce à une organisation solidaire et proportionnelle aux moyens de chacun, en combinant couverture médicale, prévention, accompagnement et services de bien-être."
+  },
+  "values": [
+    "Dignité humaine",
+    "Solidarité",
+    "Accessibilité",
+    "Qualité des soins",
+    "Prévention",
+    "Proximité",
+    "Écoute et respect",
+    "Bien-être",
+    "Responsabilité"
+  ],
+  "objectives": [
+    "Offrir une couverture santé adaptée aux moyens et aux besoins des membres.",
+    "Promouvoir la prévention, le dépistage et l'éducation sanitaire.",
+    "Mutualiser les ressources afin de contribuer à réduire le coût des soins.",
+    "Favoriser un accès équitable aux médicaments et aux actes médicaux de qualité.",
+    "Développer des centres de bien-être rattachés aux bureaux afin de renforcer la prévention et l'accompagnement.",
+    "Accompagner les familles, les entreprises et les communautés.",
+    "Contribuer à la réduction des inégalités d'accès aux soins.",
+    "Garantir une prise en charge organisée avec les partenaires sanitaires."
+  ],
+  "offers": [
+    "Consultations médicales",
+    "Soins spécialisés",
+    "Hospitalisation",
+    "Maternité",
+    "Pharmacie",
+    "Laboratoire",
+    "Évacuation sanitaire",
+    "Prévention et bien-être",
+    "Accompagnement sanitaire"
+  ],
+  "categories": [
+    {
+      "code": "BRONZE",
+      "name": "Bronze",
+      "monthly_contribution_usd": 25,
+      "coverage_level": "Couverture de base",
+      "advantages": [
+        "Consultations",
+        "Premiers soins",
+        "Réduction des frais médicaux",
+        "Orientation sanitaire"
+      ]
+    },
+    {
+      "code": "ARGENT",
+      "name": "Argent",
+      "monthly_contribution_usd": 50,
+      "coverage_level": "Couverture intermédiaire",
+      "advantages": [
+        "Consultations",
+        "Examens de base",
+        "Prise en charge partielle des hospitalisations"
+      ]
+    },
+    {
+      "code": "OR",
+      "name": "Or",
+      "monthly_contribution_usd": 75,
+      "coverage_level": "Couverture étendue",
+      "advantages": [
+        "Consultations",
+        "Examens",
+        "Hospitalisations partielles",
+        "Médicaments essentiels"
+      ]
+    },
+    {
+      "code": "PLATINE",
+      "name": "Platine",
+      "monthly_contribution_usd": 100,
+      "coverage_level": "Couverture médicale la plus complète",
+      "advantages": [
+        "Consultations",
+        "Examens",
+        "Hospitalisation",
+        "Médicaments essentiels",
+        "Urgences"
+      ]
+    }
+  ],
+  "adhesion": {
+    "title": "Comment adhérer",
+    "steps": [
+      "Choisir la catégorie de couverture adaptée à ses besoins.",
+      "Fournir les informations et pièces nécessaires à l'adhésion.",
+      "Valider son adhésion selon la procédure Humanitas.",
+      "Régler la contribution correspondant à la catégorie choisie.",
+      "Recevoir sa carte de membre et les informations d'accès aux services.",
+      "Présenter sa carte ou son identifiant lors de la prise en charge chez un partenaire."
+    ],
+    "card_note": "Selon les éléments fournis : l'adhésion peut être présentée comme gratuite et la carte de membre comme facturée 10 USD. Cette règle doit rester configurable et être confirmée dans la base avant publication définitive."
+  },
+  "wellness_center": {
+    "title": "Centre de Bien-Être HUMANITAS",
+    "services": [
+      "Massages thérapeutiques",
+      "Relaxation et gestion du stress",
+      "Soins corporels et esthétiques",
+      "Accompagnement personnalisé",
+      "Prévention et promotion du bien-être"
+    ]
+  },
+  "dg_message": {
+    "title": "Message du Directeur Général",
+    "text": "Chers membres, chers partenaires et chers amis,\n\nHumanitas Santé est née d'une conviction simple : la santé ne doit pas être un privilège, mais un droit qui mérite d'être protégé avec dignité, solidarité et responsabilité.\n\nNotre ambition est de construire une mutuelle moderne, proche des communautés et fondée sur une organisation rigoureuse de la couverture sanitaire. Nous voulons associer la prévention, la qualité des soins, l'accompagnement et le bien-être afin d'apporter une réponse concrète aux réalités des familles, des entreprises et des communautés.\n\nÀ travers nos différentes catégories de couverture, chacun doit pouvoir choisir une protection adaptée à ses besoins et à ses possibilités. Notre engagement est également de développer un réseau de partenaires fiables et une prise en charge transparente.\n\nHumanitas Santé avance avec une exigence : servir la personne avant tout. Nous plaçons la dignité humaine, la solidarité et la qualité au cœur de chaque action.\n\nEnsemble, faisons de la prévention, de la protection sanitaire et du bien-être une réalité durable.\n\nVotre Santé, Notre Priorité !\nLa Direction Générale — Mutuelle de Santé HUMANITAS"
+  },
+  "contact": {
+    "website": "humanitassante.org",
+    "phone_primary": "+243 844 433 025",
+    "address": "12, Plazza, avenue Mavinga, Quartier Bahumbu, Commune de la N'Sele, Ville de Kinshasa.",
+    "address_additional": "Victoire, Bâtiment Carrefour des Jeunes",
+    "emails": [
+      "contact@humanitassante.org",
+      "info@humanitassante.org",
+      "admin@humanitassante.org",
+      "dg@humanitassante.org",
+      "coordo@humanitassante.org"
+    ]
+  },
+  "partners": [
+    "Lumen Pacis Humanitas (LPH)",
+    "Société Rapido",
+    "ASBL Mon Ami"
+  ]
+}

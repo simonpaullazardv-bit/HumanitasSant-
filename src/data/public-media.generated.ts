@@ -1,0 +1,66 @@
+/**
+ * Fichier généré automatiquement à partir de public/img et public/videos.
+ * Ne pas modifier à la main : relancer npm run dev ou npm run build.
+ */
+
+export const LOCAL_PUBLIC_IMAGE_URLS = [
+  "/img/categorieCouverture.png",
+  "/img/categories.png",
+  "/img/couverture.png",
+  "/img/dg.png",
+  "/img/equipe.png",
+  "/img/evenements.jpg",
+  "/img/gallery/bien%20comprendre%20humanitas.jpg",
+  "/img/gallery/categories.png",
+  "/img/gallery/coordonnateurprogrammes.jpg",
+  "/img/gallery/Directeur%20Generale.jpg",
+  "/img/gallery/equipeadministrative.jpg",
+  "/img/gallery/evenements.png",
+  "/img/gallery/humanit.png",
+  "/img/gallery/humanitas%20(1).png",
+  "/img/gallery/humanitas%20(10).png",
+  "/img/gallery/humanitas%20(11).png",
+  "/img/gallery/humanitas%20(12).png",
+  "/img/gallery/humanitas%20(13).png",
+  "/img/gallery/humanitas%20(14).png",
+  "/img/gallery/humanitas%20(15).png",
+  "/img/gallery/humanitas%20(16).png",
+  "/img/gallery/humanitas%20(17).png",
+  "/img/gallery/humanitas%20(18).png",
+  "/img/gallery/humanitas%20(19).png",
+  "/img/gallery/humanitas%20(2).png",
+  "/img/gallery/humanitas%20(20).png",
+  "/img/gallery/humanitas%20(21).png",
+  "/img/gallery/humanitas%20(22).png",
+  "/img/gallery/humanitas%20(23).png",
+  "/img/gallery/humanitas%20(24).png",
+  "/img/gallery/humanitas%20(25).png",
+  "/img/gallery/humanitas%20(26).png",
+  "/img/gallery/humanitas%20(27).png",
+  "/img/gallery/humanitas%20(28).png",
+  "/img/gallery/humanitas%20(3).png",
+  "/img/gallery/humanitas%20(4).png",
+  "/img/gallery/humanitas%20(5).png",
+  "/img/gallery/humanitas%20(6).png",
+  "/img/gallery/humanitas%20(7).png",
+  "/img/gallery/humanitas%20(8).png",
+  "/img/gallery/humanitas%20(9).png",
+  "/img/gallery/Humanitas1.png",
+  "/img/gallery/Humanitas3.png",
+  "/img/gallery/logo%20humanitas.jpg",
+  "/img/gallery/messagedg.png",
+  "/img/gallery/objectifs.png",
+  "/img/humanit.png",
+  "/img/humanitas%20(14).png",
+  "/img/Humanitas1.png",
+  "/img/Humanitas3.png",
+  "/img/logo.jpg",
+  "/img/messagedg.png",
+  "/img/objectifs.png",
+  "/img/presentationhumanitas.png",
+  "/img/services.jpg"
+] as const;
+
+export const LOCAL_PUBLIC_VIDEO_URLS = [
+  "/videos/humanitas-sante-prevention.mp4"
+] as const;

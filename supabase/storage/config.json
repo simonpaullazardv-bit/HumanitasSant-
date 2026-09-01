@@ -1,0 +1,63 @@
+{
+  "buckets": [
+    {
+      "id": "medias",
+      "name": "medias",
+      "public": false,
+      "file_size_limit": "10MB",
+      "allowed_mime_types": [
+        "image/png",
+        "image/jpeg",
+        "image/webp",
+        "video/mp4",
+        "video/webm",
+        "application/pdf"
+      ]
+    },
+    {
+      "id": "ordonnances",
+      "name": "ordonnances",
+      "public": false,
+      "file_size_limit": "10MB",
+      "allowed_mime_types": [
+        "image/png",
+        "image/jpeg",
+        "application/pdf"
+      ]
+    },
+    {
+      "id": "factures",
+      "name": "factures",
+      "public": false,
+      "file_size_limit": "10MB",
+      "allowed_mime_types": [
+        "image/png",
+        "image/jpeg",
+        "application/pdf"
+      ]
+    },
+    {
+      "id": "avatars",
+      "name": "avatars",
+      "public": true,
+      "file_size_limit": "2MB",
+      "allowed_mime_types": [
+        "image/png",
+        "image/jpeg",
+        "image/webp"
+      ]
+    },
+    {
+      "id": "documents_humanitas",
+      "name": "documents_humanitas",
+      "public": false,
+      "file_size_limit": "10MB",
+      "allowed_mime_types": [
+        "application/pdf",
+        "image/png",
+        "image/jpeg",
+        "image/webp"
+      ]
+    }
+  ]
+}
