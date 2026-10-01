@@ -149,7 +149,11 @@ export function PrintableMemberCard({ data }: { data: MemberCardData }) {
           {/* QR Code */}
           <div className="flex flex-col items-center justify-center shrink-0">
             <div className="rounded-lg bg-white p-1 shadow">
-              {data.qrToken ? <QRCode value={qrUrl} size={48} level="M" /> : <span className="text-[7px] text-slate-500">QR généré à l’émission</span>}
+              {data.qrToken ? (
+                <QRCode value={qrUrl} size={48} level="M" />
+              ) : (
+                <span className="text-[7px] text-slate-500">QR généré à l’émission</span>
+              )}
             </div>
             <span className="mt-1 text-[7px] text-white/70">Scannez pour vérifier</span>
           </div>
@@ -226,7 +230,11 @@ export function PrintablePersonnelCard({ data }: { data: PersonnelCardData }) {
           {/* QR Code */}
           <div className="flex flex-col items-center justify-center shrink-0">
             <div className="rounded-lg bg-white p-1 shadow">
-              {data.qrToken ? <QRCode value={qrUrl} size={46} level="M" /> : <span className="text-[7px] text-slate-500">QR généré à l’émission</span>}
+              {data.qrToken ? (
+                <QRCode value={qrUrl} size={46} level="M" />
+              ) : (
+                <span className="text-[7px] text-slate-500">QR généré à l’émission</span>
+              )}
             </div>
             <span className="mt-1 text-[7px] text-white/70">Sceau Officiel</span>
           </div>

@@ -216,7 +216,8 @@ export const DASHBOARDS: Record<string, DashboardConfig> = {
   pharmacie: {
     allowed: ["pharmacie"],
     title: "Espace Pharmacie partenaire",
-    subtitle: "Vérification sécurisée des membres, prestations pharmaceutiques autorisées et suivi de vos opérations Humanitas.",
+    subtitle:
+      "Vérification sécurisée des membres, prestations pharmaceutiques autorisées et suivi de vos opérations Humanitas.",
     nav: [
       { label: "Tableau de bord", to: "/portail/pharmacie", icon: LayoutDashboard },
       { label: "Contrôle des droits", to: "/portail/pharmacie", icon: BadgeCheck },
@@ -235,7 +236,8 @@ export const DASHBOARDS: Record<string, DashboardConfig> = {
   laboratoire: {
     allowed: ["laboratoire"],
     title: "Espace Laboratoire partenaire",
-    subtitle: "Contrôle des droits, prestations de laboratoire autorisées et facturation de votre établissement.",
+    subtitle:
+      "Contrôle des droits, prestations de laboratoire autorisées et facturation de votre établissement.",
     nav: [
       { label: "Tableau de bord", to: "/portail/laboratoire", icon: LayoutDashboard },
       { label: "Contrôle des droits", to: "/portail/laboratoire", icon: BadgeCheck },
@@ -254,7 +256,8 @@ export const DASHBOARDS: Record<string, DashboardConfig> = {
   centre_bien_etre: {
     allowed: ["centre_bien_etre"],
     title: "Espace Centre de bien-être partenaire",
-    subtitle: "Vérification des membres, prestations de bien-être autorisées et suivi de votre convention Humanitas.",
+    subtitle:
+      "Vérification des membres, prestations de bien-être autorisées et suivi de votre convention Humanitas.",
     nav: [
       { label: "Tableau de bord", to: "/portail/centre-bien-etre", icon: LayoutDashboard },
       { label: "Contrôle des droits", to: "/portail/centre-bien-etre", icon: BadgeCheck },
@@ -293,7 +296,8 @@ export const DASHBOARDS: Record<string, DashboardConfig> = {
   beneficiaire: {
     allowed: ["adherent"],
     title: "Mon espace bénéficiaire",
-    subtitle: "Compte personnel du bénéficiaire, séparé du titulaire par beneficiaire_id et soumis au même rôle applicatif adherent.",
+    subtitle:
+      "Compte personnel du bénéficiaire, séparé du titulaire par beneficiaire_id et soumis au même rôle applicatif adherent.",
     nav: [
       { label: "Mon espace", to: "/portail/beneficiaire", icon: LayoutDashboard },
       { label: "Ma carte", to: "/portail/beneficiaire", icon: CreditCard },
@@ -305,7 +309,7 @@ export const DASHBOARDS: Record<string, DashboardConfig> = {
       "Historique personnel de prise en charge",
       "Notifications personnelles",
     ],
-  }
+  },
 };
 
 export const DASHBOARD_ICONS = { Activity, UserCog };

@@ -41,7 +41,9 @@ function usePublicPartnerLocations() {
     queryFn: async () => {
       try {
         const { data, error } = await (supabase.from("partenaires" as never) as any)
-          .select("id, nom, type, ville, commune, adresse, telephone, conventionne, is_active, is_public, latitude, longitude")
+          .select(
+            "id, nom, type, ville, commune, adresse, telephone, conventionne, is_active, is_public, latitude, longitude",
+          )
           .eq("is_active", true)
           .eq("is_public", true)
           .order("ordre", { ascending: true });
@@ -50,7 +52,16 @@ function usePublicPartnerLocations() {
           id: row.id,
           name: row.nom,
           type: row.type,
-          typeLabel: row.type === "hopital" ? "Hôpital" : row.type === "pharmacie" ? "Pharmacie" : row.type === "laboratoire" ? "Laboratoire" : row.type === "entreprise" ? "Entreprise" : "Centre de bien-être",
+          typeLabel:
+            row.type === "hopital"
+              ? "Hôpital"
+              : row.type === "pharmacie"
+                ? "Pharmacie"
+                : row.type === "laboratoire"
+                  ? "Laboratoire"
+                  : row.type === "entreprise"
+                    ? "Entreprise"
+                    : "Centre de bien-être",
           city: row.ville ?? "Ville non publiée",
           commune: row.commune ?? "",
           address: row.adresse ?? "Adresse non publiée",
@@ -67,8 +78,6 @@ function usePublicPartnerLocations() {
     staleTime: 30_000,
   });
 }
-
-
 
 export function InteractivePartnersMap() {
   const { data: partnerLocations = [], isPending } = usePublicPartnerLocations();
@@ -102,11 +111,14 @@ export function InteractivePartnersMap() {
       />
 
       {isPending ? (
-        <p className="mt-8 text-center text-sm text-muted-foreground">Chargement du réseau public validé…</p>
+        <p className="mt-8 text-center text-sm text-muted-foreground">
+          Chargement du réseau public validé…
+        </p>
       ) : null}
       {!isPending && partnerLocations.length === 0 ? (
         <div className="mt-8 rounded-2xl border border-dashed border-border bg-card p-6 text-center text-sm text-muted-foreground">
-          Le répertoire public sera affiché après validation des établissements et de leurs coordonnées par Humanitas.
+          Le répertoire public sera affiché après validation des établissements et de leurs
+          coordonnées par Humanitas.
         </div>
       ) : null}
 
@@ -119,9 +131,18 @@ export function InteractivePartnersMap() {
           ["Centres de bien-être", "centre_bien_etre"],
           ["Entreprises", "entreprise"],
         ].map(([label, type]) => (
-          <button key={type} type="button" onClick={() => setSelectedType(type)} className="rounded-2xl border border-border/70 bg-card p-4 text-left transition hover:border-primary/40">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{label}</p>
-            <p className="mt-1 font-display text-2xl font-bold text-foreground">{partnerLocations.filter((partner) => partner.type === type).length}</p>
+          <button
+            key={type}
+            type="button"
+            onClick={() => setSelectedType(type)}
+            className="rounded-2xl border border-border/70 bg-card p-4 text-left transition hover:border-primary/40"
+          >
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              {label}
+            </p>
+            <p className="mt-1 font-display text-2xl font-bold text-foreground">
+              {partnerLocations.filter((partner) => partner.type === type).length}
+            </p>
             <p className="text-[11px] text-muted-foreground">établissements publiés</p>
           </button>
         ))}
@@ -145,7 +166,13 @@ export function InteractivePartnersMap() {
           className="rounded-2xl border border-border/80 bg-card px-4 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
         >
           <option value="all">Toutes les villes publiées</option>
-          {[...new Set(partnerLocations.map((partner) => partner.city).filter(Boolean))].sort().map((city) => <option key={city} value={city}>{city}</option>)}
+          {[...new Set(partnerLocations.map((partner) => partner.city).filter(Boolean))]
+            .sort()
+            .map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
         </select>
 
         <select
@@ -210,14 +237,24 @@ export function InteractivePartnersMap() {
                   {partner.address}, {partner.commune} ({partner.city})
                 </p>
 
-                {partner.latitude != null && partner.longitude != null ? <p className="mt-2 text-[11px] text-muted-foreground">GPS : {partner.latitude.toFixed(6)}, {partner.longitude.toFixed(6)}</p> : <p className="mt-2 text-[11px] text-muted-foreground">Coordonnées GPS non encore validées</p>}
+                {partner.latitude != null && partner.longitude != null ? (
+                  <p className="mt-2 text-[11px] text-muted-foreground">
+                    GPS : {partner.latitude.toFixed(6)}, {partner.longitude.toFixed(6)}
+                  </p>
+                ) : (
+                  <p className="mt-2 text-[11px] text-muted-foreground">
+                    Coordonnées GPS non encore validées
+                  </p>
+                )}
 
                 <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground pt-2 border-t border-border/40">
                   <span className="flex items-center gap-1 font-mono">
                     <Phone className="size-3 text-primary" />
                     {partner.phone}
                   </span>
-                  <span className="text-[11px] font-semibold text-emerald-600">Conventionnement publié</span>
+                  <span className="text-[11px] font-semibold text-emerald-600">
+                    Conventionnement publié
+                  </span>
                 </div>
               </div>
             ))
@@ -257,7 +294,10 @@ export function InteractivePartnersMap() {
                 className="h-64 w-full border-0"
                 loading="lazy"
               />
-              <p className="px-3 py-2 text-[11px] text-muted-foreground">Position publiée par Humanitas : {selectedPartner.latitude.toFixed(6)}, {selectedPartner.longitude.toFixed(6)}.</p>
+              <p className="px-3 py-2 text-[11px] text-muted-foreground">
+                Position publiée par Humanitas : {selectedPartner.latitude.toFixed(6)},{" "}
+                {selectedPartner.longitude.toFixed(6)}.
+              </p>
             </div>
           ) : null}
 

@@ -43,18 +43,20 @@ export function FloatingActions() {
               </button>
 
               {/* WhatsApp Direct : affiché uniquement après validation de la vraie URL */}
-              {whatsappUrl && <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => setExpanded(false)}
-                className="group flex items-center gap-2.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-3d-elevated transition-all hover:bg-emerald-700 hover:scale-105"
-              >
-                <span>WhatsApp Instantané</span>
-                <span className="flex size-8 items-center justify-center rounded-full bg-white text-emerald-600">
-                  <MessageCircle className="size-4" />
-                </span>
-              </a>}
+              {whatsappUrl && (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setExpanded(false)}
+                  className="group flex items-center gap-2.5 rounded-full bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-3d-elevated transition-all hover:bg-emerald-700 hover:scale-105"
+                >
+                  <span>WhatsApp Instantané</span>
+                  <span className="flex size-8 items-center justify-center rounded-full bg-white text-emerald-600">
+                    <MessageCircle className="size-4" />
+                  </span>
+                </a>
+              )}
 
               {/* Prendre Rendez-vous */}
               <button
@@ -90,15 +92,17 @@ export function FloatingActions() {
         {/* Primary Floating Action Toggle Button */}
         <div className="flex items-center gap-2">
           {/* Direct WhatsApp Quick Pill : aucune URL fictive */}
-          {whatsappUrl && <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="WhatsApp Humanitas"
-            className="flex size-12 items-center justify-center rounded-full bg-emerald-600 text-white shadow-3d-elevated transition-transform hover:scale-110"
-          >
-            <MessageCircle className="size-6" />
-          </a>}
+          {whatsappUrl && (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="WhatsApp Humanitas"
+              className="flex size-12 items-center justify-center rounded-full bg-emerald-600 text-white shadow-3d-elevated transition-transform hover:scale-110"
+            >
+              <MessageCircle className="size-6" />
+            </a>
+          )}
 
           {/* Main Toggle Button */}
           <button

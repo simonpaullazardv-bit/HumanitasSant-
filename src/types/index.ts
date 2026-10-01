@@ -18,10 +18,13 @@ export interface Profile {
   id: string;
   full_name: string | null;
   email: string | null;
+  username?: string | null;
   phone: string | null;
   avatar_url: string | null;
   fonction: string | null;
   is_active: boolean;
+  force_password_change?: boolean;
+  password_initialized_at?: string | null;
   created_at: string;
   updated_at: string;
 }

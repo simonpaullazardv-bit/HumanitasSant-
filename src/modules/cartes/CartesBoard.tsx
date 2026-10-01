@@ -22,6 +22,7 @@ import {
 import { adherentsQuery, type BeneficiaireRow } from "@/modules/adherents/queries";
 import { supabase } from "@/integrations/supabase/client";
 import { fullName, formatDate, formatDateTime } from "@/modules/adherents/constants";
+import { useAuth } from "@/hooks/useAuth";
 import { categoriesFinanceQuery } from "@/modules/finance/queries";
 import type { CarteVisuelData } from "./CarteVisuel";
 import { EmissionDialog } from "./EmissionDialog";
@@ -46,6 +47,15 @@ const STATUT_BADGE: Record<StatutCarte, string> = {
 };
 
 export function CartesBoard() {
+  const { roles } = useAuth();
+  const canManagePersonnelCards = roles.some((role) =>
+    ["super_admin", "administrateur", "directeur_general"].includes(role),
+  );
+  const canPrintCards = roles.some((role) =>
+    ["super_admin", "administrateur", "directeur_general", "coordonnateur", "financier"].includes(
+      role,
+    ),
+  );
   const [search, setSearch] = useState("");
   const [selection, setSelection] = useState<string[]>([]);
   const [emission, setEmission] = useState<{ open: boolean; reimpression: boolean }>({
@@ -63,7 +73,10 @@ export function CartesBoard() {
   const beneficiaires = useQuery({
     queryKey: ["cartes", "beneficiaires-all"],
     queryFn: async (): Promise<BeneficiaireRow[]> => {
-      const { data, error } = await (supabase.from("beneficiaires") as any).select("*").eq("is_active", true).limit(1000);
+      const { data, error } = await (supabase.from("beneficiaires") as any)
+        .select("*")
+        .eq("is_active", true)
+        .limit(1000);
       if (error) throw error;
       return (data ?? []) as BeneficiaireRow[];
     },
@@ -114,7 +127,9 @@ export function CartesBoard() {
         type: "adherent",
         numero: carte.numero,
         token: carte.qr_token,
-        nomComplet: beneficiaire ? [beneficiaire.nom, beneficiaire.prenom].filter(Boolean).join(" ") : "—",
+        nomComplet: beneficiaire
+          ? [beneficiaire.nom, beneficiaire.prenom].filter(Boolean).join(" ")
+          : "—",
         photoPath: beneficiaire?.photo_url ?? null,
         ligne1: "Bénéficiaire Humanitas",
         ligne2: beneficiaire?.code ? `Code ${beneficiaire.code}` : null,
@@ -186,7 +201,9 @@ export function CartesBoard() {
       <Tabs defaultValue="cartes">
         <TabsList className="flex-wrap">
           <TabsTrigger value="cartes">Cartes</TabsTrigger>
-          <TabsTrigger value="personnel">Personnel</TabsTrigger>
+          <TabsTrigger value="personnel" disabled={!canManagePersonnelCards}>
+            Personnel
+          </TabsTrigger>
           <TabsTrigger value="impressions">Historique d'impression</TabsTrigger>
           <TabsTrigger value="reimpressions">Réimpressions</TabsTrigger>
         </TabsList>
@@ -204,16 +221,20 @@ export function CartesBoard() {
             </div>
             <Button
               variant="secondary"
-              disabled={selection.length === 0}
+              disabled={selection.length === 0 || !canPrintCards}
               onClick={imprimerSelection}
             >
               <Printer className="mr-1 size-4" /> Imprimer le lot ({selection.length})
             </Button>
-            <Button onClick={() => setEmission({ open: true, reimpression: false })}>
+            <Button
+              disabled={!canPrintCards}
+              onClick={() => setEmission({ open: true, reimpression: false })}
+            >
               <Plus className="mr-1 size-4" /> Émettre une carte
             </Button>
             <Button
               variant="secondary"
+              disabled={!canPrintCards}
               onClick={() => setEmission({ open: true, reimpression: true })}
             >
               <RefreshCw className="mr-1 size-4" /> Réimprimer

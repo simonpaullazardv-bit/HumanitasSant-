@@ -4,7 +4,13 @@ import { motion, useReducedMotion } from "motion/react";
  * Globe terrestre 3D stylisé — sphère en dégradé, grille de méridiens
  * et bande de continents pointillés défilant en boucle (rotation lente).
  */
-export function Globe({ className = "", showKinshasaMarker = false }: { className?: string; showKinshasaMarker?: boolean }) {
+export function Globe({
+  className = "",
+  showKinshasaMarker = false,
+}: {
+  className?: string;
+  showKinshasaMarker?: boolean;
+}) {
   const reduce = useReducedMotion();
 
   return (
@@ -59,13 +65,18 @@ export function Globe({ className = "", showKinshasaMarker = false }: { classNam
       </div>
 
       {showKinshasaMarker ? (
-        <div className="absolute left-[57%] top-[56%] z-10 -translate-x-1/2 -translate-y-1/2" aria-label="Kinshasa, République démocratique du Congo">
+        <div
+          className="absolute left-[57%] top-[56%] z-10 -translate-x-1/2 -translate-y-1/2"
+          aria-label="Kinshasa, République démocratique du Congo"
+        >
           <motion.span
             className="block size-2.5 rounded-full border-2 border-white bg-accent shadow-[0_0_0_4px_rgba(255,255,255,0.18)]"
             animate={reduce ? {} : { scale: [1, 1.35, 1] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           />
-          <span className="absolute left-3 top-1/2 hidden -translate-y-1/2 whitespace-nowrap rounded-full bg-background/90 px-1.5 py-0.5 text-[8px] font-bold text-foreground shadow-sm sm:block">Kinshasa</span>
+          <span className="absolute left-3 top-1/2 hidden -translate-y-1/2 whitespace-nowrap rounded-full bg-background/90 px-1.5 py-0.5 text-[8px] font-bold text-foreground shadow-sm sm:block">
+            Kinshasa
+          </span>
         </div>
       ) : null}
 

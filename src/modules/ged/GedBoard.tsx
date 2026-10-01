@@ -85,7 +85,8 @@ export function GedBoard() {
 
   const uploadDocMutation = useMutation({
     mutationFn: async () => {
-      if (!selectedFile || !user?.id) throw new Error("Sélectionnez un fichier et vérifiez votre session.");
+      if (!selectedFile || !user?.id)
+        throw new Error("Sélectionnez un fichier et vérifiez votre session.");
       const safeName = selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
       const path = `${user.id}/${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}-${safeName}`;
       const upload = await supabase.storage.from("documents_humanitas").upload(path, selectedFile, {
@@ -184,9 +185,13 @@ export function GedBoard() {
                     <SelectItem value="facture">Facture Prestataire</SelectItem>
                     <SelectItem value="recu">Reçu de Paiement</SelectItem>
                     <SelectItem value="journal_caisse">Journal de caisse</SelectItem>
-                    <SelectItem value="justificatif_remboursement">Justificatif de remboursement</SelectItem>
+                    <SelectItem value="justificatif_remboursement">
+                      Justificatif de remboursement
+                    </SelectItem>
                     <SelectItem value="liste_remboursements">Liste des remboursements</SelectItem>
-                    <SelectItem value="situation_financiere">Situation financière d'un adhérent</SelectItem>
+                    <SelectItem value="situation_financiere">
+                      Situation financière d'un adhérent
+                    </SelectItem>
                     <SelectItem value="depense">Dépense</SelectItem>
                     <SelectItem value="entree">Entrée financière</SelectItem>
                     <SelectItem value="justificatif">Justificatif Administratif</SelectItem>
@@ -205,7 +210,10 @@ export function GedBoard() {
                     setForm((current) => ({ ...current, filename: file?.name ?? "" }));
                   }}
                 />
-                <p className="mt-1 text-xs text-muted-foreground">Le fichier est réellement envoyé dans le bucket privé documents_humanitas. Sa taille enregistrée correspond au fichier reçu.</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Le fichier est réellement envoyé dans le bucket privé documents_humanitas. Sa
+                  taille enregistrée correspond au fichier reçu.
+                </p>
               </div>
 
               <Button
@@ -269,17 +277,45 @@ export function GedBoard() {
                   </TableCell>
                   <TableCell>
                     <div className="flex gap-2">
-                      <Button size="sm" variant="outline" onClick={async () => {
-                        const { data, error } = await supabase.storage.from(doc.bucket_id ?? "documents_humanitas").createSignedUrl(doc.file_path, 300);
-                        if (error || !data?.signedUrl) { toast.error("Document indisponible."); return; }
-                        window.open(data.signedUrl, "_blank", "noopener,noreferrer");
-                      }}>Voir</Button>
-                      <Button size="sm" variant="outline" onClick={async () => {
-                        const { data, error } = await supabase.storage.from(doc.bucket_id ?? "documents_humanitas").createSignedUrl(doc.file_path, 300);
-                        if (error || !data?.signedUrl) { toast.error("Document indisponible."); return; }
-                        const printWindow = window.open(data.signedUrl, "_blank", "noopener,noreferrer");
-                        printWindow?.addEventListener("load", () => printWindow.print(), { once: true });
-                      }}>Imprimer</Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={async () => {
+                          const { data, error } = await supabase.storage
+                            .from(doc.bucket_id ?? "documents_humanitas")
+                            .createSignedUrl(doc.file_path, 300);
+                          if (error || !data?.signedUrl) {
+                            toast.error("Document indisponible.");
+                            return;
+                          }
+                          window.open(data.signedUrl, "_blank", "noopener,noreferrer");
+                        }}
+                      >
+                        Voir
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={async () => {
+                          const { data, error } = await supabase.storage
+                            .from(doc.bucket_id ?? "documents_humanitas")
+                            .createSignedUrl(doc.file_path, 300);
+                          if (error || !data?.signedUrl) {
+                            toast.error("Document indisponible.");
+                            return;
+                          }
+                          const printWindow = window.open(
+                            data.signedUrl,
+                            "_blank",
+                            "noopener,noreferrer",
+                          );
+                          printWindow?.addEventListener("load", () => printWindow.print(), {
+                            once: true,
+                          });
+                        }}
+                      >
+                        Imprimer
+                      </Button>
                     </div>
                   </TableCell>
                 </TableRow>

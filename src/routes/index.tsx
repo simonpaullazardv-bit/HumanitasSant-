@@ -16,10 +16,10 @@ import { InteractivePartnersMap } from "@/components/sections/InteractivePartner
 import { Faq } from "@/components/sections/Faq";
 import { PartnersDirectory } from "@/components/sections/PartnersDirectory";
 import { NewsList } from "@/components/sections/NewsList";
-import { Testimonials } from "@/components/sections/Testimonials";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { SocialLinks } from "@/components/sections/SocialLinks";
 import { DrcMap } from "@/components/shared/DrcMap";
+import { Testimonials } from "@/components/sections/Testimonials";
 
 const title = "Humanitas Santé | Mutuelle de santé";
 const description =
@@ -50,13 +50,13 @@ function Index() {
       <Advantages />
       <MembershipTiers />
       <GallerySection />
+      <Testimonials limit={3} />
       <NewsList limit={3} tone="surface" />
       <InteractivePartnersMap />
       <PartnersDirectory />
       <Achievements />
       <Events />
       <WhyUs />
-      <Testimonials />
       <Faq />
       <ContactSection />
       <SocialLinks />

@@ -34,7 +34,11 @@ import {
   useSoumettreFacture,
 } from "./queries";
 
-export function EspacePartenaire({ partnerType }: { partnerType?: "hopital" | "pharmacie" | "laboratoire" | "centre_bien_etre" }) {
+export function EspacePartenaire({
+  partnerType,
+}: {
+  partnerType?: "hopital" | "pharmacie" | "laboratoire" | "centre_bien_etre";
+}) {
   const { user } = useAuth();
   const partenaire = useQuery(monPartenaireQuery(user?.id));
   const partenaireId = partenaire.data?.id;
@@ -51,7 +55,11 @@ export function EspacePartenaire({ partnerType }: { partnerType?: "hopital" | "p
   const soumettreFacture = useSoumettreFacture();
   const marquer = useMarquerNotification();
 
-  const [personne, setPersonne] = useState<{ adherentId: string | null; beneficiaireId: string | null; carteId: string | null }>({ adherentId: null, beneficiaireId: null, carteId: null });
+  const [personne, setPersonne] = useState<{
+    adherentId: string | null;
+    beneficiaireId: string | null;
+    carteId: string | null;
+  }>({ adherentId: null, beneficiaireId: null, carteId: null });
   const [prestationPec, setPrestationPec] = useState<{ id: string; numero: string } | null>(null);
   const [motif, setMotif] = useState("");
   const [montant, setMontant] = useState("");
@@ -95,7 +103,10 @@ export function EspacePartenaire({ partnerType }: { partnerType?: "hopital" | "p
     return (
       <div className="rounded-2xl border border-destructive/30 bg-destructive/5 p-8 text-center">
         <h2 className="font-display text-lg font-bold">Rattachement métier incohérent</h2>
-        <p className="mt-2 text-sm text-muted-foreground">Votre rôle exige un établissement de type {typeLabels[partnerType]}, mais le rattachement courant ne correspond pas. Contactez la coordination Humanitas.</p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Votre rôle exige un établissement de type {typeLabels[partnerType]}, mais le rattachement
+          courant ne correspond pas. Contactez la coordination Humanitas.
+        </p>
       </div>
     );
   }
@@ -106,7 +117,9 @@ export function EspacePartenaire({ partnerType }: { partnerType?: "hopital" | "p
         <div>
           <p className="font-mono text-xs text-muted-foreground">{partenaire.data.numero}</p>
           <h2 className="font-display text-lg font-bold text-foreground">{partenaire.data.nom}</h2>
-          <p className="mt-1 text-xs text-muted-foreground">{typeLabels[partenaire.data.type] ?? "Partenaire"}</p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {typeLabels[partenaire.data.type] ?? "Partenaire"}
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <Badge variant={contratActif ? "default" : "secondary"}>

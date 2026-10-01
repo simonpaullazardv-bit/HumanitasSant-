@@ -22,7 +22,11 @@ export interface ReceiptData {
 
 export function ReceiptVisual({ receipt }: { receipt?: ReceiptData }) {
   if (!receipt) {
-    return <div className="rounded-2xl border border-dashed border-border bg-card p-8 text-center text-sm text-muted-foreground">Sélectionnez un reçu enregistré pour le prévisualiser et l'imprimer.</div>;
+    return (
+      <div className="rounded-2xl border border-dashed border-border bg-card p-8 text-center text-sm text-muted-foreground">
+        Sélectionnez un reçu enregistré pour le prévisualiser et l'imprimer.
+      </div>
+    );
   }
 
   const qrUrl = `${typeof window !== "undefined" ? window.location.origin : ""}/verify/recu/${receipt.qrVerificationToken}`;

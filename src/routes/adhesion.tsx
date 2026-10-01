@@ -30,15 +30,17 @@ export const Route = createFileRoute("/adhesion")({
   component: MembershipPage,
 });
 
-const schema = z.object({
-  full_name: z.string().trim().min(2, "Nom trop court").max(100),
-  email: z.string().trim().email("Adresse email invalide").max(255).optional().or(z.literal("")),
-  phone: z.string().trim().min(6, "Numéro invalide").max(30).optional().or(z.literal("")),
-  tier: z.string().trim().min(1, "Catégorie requise").max(80),
-}).refine((value) => Boolean(value.email?.trim() || value.phone?.trim()), {
-  message: "Indiquez au moins un email ou un numéro de téléphone.",
-  path: ["email"],
-});
+const schema = z
+  .object({
+    full_name: z.string().trim().min(2, "Nom trop court").max(100),
+    email: z.string().trim().email("Adresse email invalide").max(255).optional().or(z.literal("")),
+    phone: z.string().trim().min(6, "Numéro invalide").max(30).optional().or(z.literal("")),
+    tier: z.string().trim().min(1, "Catégorie requise").max(80),
+  })
+  .refine((value) => Boolean(value.email?.trim() || value.phone?.trim()), {
+    message: "Indiquez au moins un email ou un numéro de téléphone.",
+    path: ["email"],
+  });
 
 type MembershipValues = z.infer<typeof schema>;
 
@@ -58,7 +60,9 @@ function MembershipPage() {
   const onSubmit = async (values: MembershipValues) => {
     try {
       await submitMembershipRequest(values);
-      toast.success("Demande d'adhésion enregistrée. Notre équipe vous recontactera après vérification du dossier.");
+      toast.success(
+        "Demande d'adhésion enregistrée. Notre équipe vous recontactera après vérification du dossier.",
+      );
       reset();
     } catch {
       toast.error("Envoi impossible pour le moment. Merci de réessayer.");
@@ -77,14 +81,24 @@ function MembershipPage() {
         <Reveal className="mx-auto max-w-3xl">
           <div className="mb-6 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">Adhésion</p>
-              <p className="mt-1 font-display text-xl font-extrabold text-foreground">Adhésion gratuite</p>
-              <p className="mt-1 text-xs text-muted-foreground">Aucun frais d'adhésion supplémentaire annoncé à ce stade.</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+                Adhésion
+              </p>
+              <p className="mt-1 font-display text-xl font-extrabold text-foreground">
+                Adhésion gratuite
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Aucun frais d'adhésion supplémentaire annoncé à ce stade.
+              </p>
             </div>
             <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-primary">Carte de membre</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-primary">
+                Carte de membre
+              </p>
               <p className="mt-1 font-display text-xl font-extrabold text-foreground">10 USD</p>
-              <p className="mt-1 text-xs text-muted-foreground">Frais d'émission de la carte de membre, selon les règles publiées par Humanitas.</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Frais d'émission de la carte de membre, selon les règles publiées par Humanitas.
+              </p>
             </div>
           </div>
 
@@ -132,13 +146,18 @@ function MembershipPage() {
                     </option>
                   ))}
                   {!tiers.isPending && !tiers.data?.length ? (
-                    <option value="" disabled>Aucune catégorie publiée</option>
+                    <option value="" disabled>
+                      Aucune catégorie publiée
+                    </option>
                   ) : null}
                 </select>
               </div>
             </div>
 
-            <p className="mt-5 text-xs text-muted-foreground">Votre demande contient uniquement les informations nécessaires au premier contact. Un Coordonnateur Humanitas pourra ensuite vous recontacter pour compléter le dossier.</p>
+            <p className="mt-5 text-xs text-muted-foreground">
+              Votre demande contient uniquement les informations nécessaires au premier contact. Un
+              Coordonnateur Humanitas pourra ensuite vous recontacter pour compléter le dossier.
+            </p>
 
             <Button type="submit" disabled={isSubmitting} className="mt-7 w-full bg-gradient-brand">
               <UserPlus className="size-4" />

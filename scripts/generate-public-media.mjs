@@ -40,4 +40,6 @@ videos.sort((a, b) => a.localeCompare(b, "fr"));
 const content = `/**\n * Fichier généré automatiquement à partir de public/img et public/videos.\n * Ne pas modifier à la main : relancer npm run dev ou npm run build.\n */\n\nexport const LOCAL_PUBLIC_IMAGE_URLS = ${JSON.stringify(images, null, 2)} as const;\n\nexport const LOCAL_PUBLIC_VIDEO_URLS = ${JSON.stringify(videos, null, 2)} as const;\n`;
 
 await writeFile(outputFile, content, "utf8");
-console.log(`[Humanitas media] ${images.length} images + ${videos.length} vidéos indexées depuis public/.`);
+console.log(
+  `[Humanitas media] ${images.length} images + ${videos.length} vidéos indexées depuis public/.`,
+);

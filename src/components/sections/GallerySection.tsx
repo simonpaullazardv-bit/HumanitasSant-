@@ -1,7 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "motion/react";
 import { useQuery } from "@tanstack/react-query";
-import { Camera, ChevronLeft, ChevronRight, Image as ImageIcon, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  Camera,
+  ChevronLeft,
+  ChevronRight,
+  Image as ImageIcon,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { cn } from "@/lib/utils";
@@ -74,12 +81,22 @@ export function GallerySection() {
   const { data: galleryItems = [] } = useGalleryQuery();
   const [featuredIndex, setFeaturedIndex] = useState(0);
 
-  const items = useMemo(() => galleryItems.filter((item) => item.photoUrl), [galleryItems]);
+  const items = useMemo(() => {
+    const source = galleryItems.filter((item) => item.photoUrl);
+    return source
+      .map((item) => ({ item, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ item }) => item);
+  }, [galleryItems]);
 
   useEffect(() => {
     if (items.length < 2) return;
+    setFeaturedIndex(Math.floor(Math.random() * items.length));
     const timer = window.setInterval(() => {
-      setFeaturedIndex((current) => (current + 1) % items.length);
+      setFeaturedIndex((current) => {
+        const offset = 1 + Math.floor(Math.random() * (items.length - 1));
+        return (current + offset) % items.length;
+      });
     }, 5000);
     return () => window.clearInterval(timer);
   }, [items.length]);
@@ -116,8 +133,12 @@ export function GallerySection() {
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[11px] font-bold backdrop-blur">
                     <Camera className="size-3" /> {featured.categoryLabel}
                   </span>
-                  <h3 className="mt-2 font-display text-xl font-bold sm:text-2xl">{featured.title}</h3>
-                  {featured.description ? <p className="mt-1 max-w-2xl text-xs text-white/80">{featured.description}</p> : null}
+                  <h3 className="mt-2 font-display text-xl font-bold sm:text-2xl">
+                    {featured.title}
+                  </h3>
+                  {featured.description ? (
+                    <p className="mt-1 max-w-2xl text-xs text-white/80">{featured.description}</p>
+                  ) : null}
                 </div>
                 <span className="rounded-full bg-black/35 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur">
                   {featuredIndex + 1} / {items.length}
@@ -130,7 +151,9 @@ export function GallerySection() {
                 <button
                   type="button"
                   aria-label="Image précédente"
-                  onClick={() => setFeaturedIndex((current) => (current - 1 + items.length) % items.length)}
+                  onClick={() =>
+                    setFeaturedIndex((current) => (current - 1 + items.length) % items.length)
+                  }
                   className="inline-flex size-10 items-center justify-center rounded-full border border-white/30 bg-black/35 text-white backdrop-blur transition hover:bg-black/55"
                 >
                   <ChevronLeft className="size-5" />
@@ -155,10 +178,17 @@ export function GallerySection() {
                 onClick={() => setFeaturedIndex(index)}
                 className={cn(
                   "group relative overflow-hidden rounded-2xl border bg-card text-left shadow-soft transition hover:-translate-y-0.5",
-                  featuredIndex === index ? "border-primary ring-2 ring-primary/20" : "border-border/70",
+                  featuredIndex === index
+                    ? "border-primary ring-2 ring-primary/20"
+                    : "border-border/70",
                 )}
               >
-                <img src={item.photoUrl} alt="" className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+                <img
+                  src={item.photoUrl}
+                  alt=""
+                  className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
                 <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-3 pb-2 pt-6 text-[10px] font-semibold text-white">
                   {item.title}
                 </span>
@@ -185,11 +215,21 @@ export function GallerySection() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.35, delay: Math.min(index * 0.02, 0.35) }}
           >
-            <img src={item.photoUrl} alt={item.title} className="aspect-[4/3] w-full rounded-2xl object-cover transition duration-500 group-hover:scale-[1.02]" loading="lazy" />
+            <img
+              src={item.photoUrl}
+              alt={item.title}
+              className="aspect-[4/3] w-full rounded-2xl object-cover transition duration-500 group-hover:scale-[1.02]"
+              loading="lazy"
+            />
             <div className="p-3">
               <p className="truncate text-xs font-bold text-foreground">{item.title}</p>
               <div className="mt-1 flex items-center gap-1.5 text-[10px] text-muted-foreground">
-                <ShieldCheck className={cn("size-3", item.source === "supabase" ? "text-emerald-600" : "text-primary")} />
+                <ShieldCheck
+                  className={cn(
+                    "size-3",
+                    item.source === "supabase" ? "text-emerald-600" : "text-primary",
+                  )}
+                />
                 {item.source === "supabase" ? "Publié par Supabase" : "Source locale public/img"}
               </div>
             </div>
@@ -200,7 +240,9 @@ export function GallerySection() {
       <div className="mt-8 flex items-center gap-2 rounded-2xl border border-primary/20 bg-primary/5 p-4 text-xs text-muted-foreground">
         <Sparkles className="size-4 shrink-0 text-primary" />
         <span>
-          <strong>Architecture hybride :</strong> la vitrine ne dépend pas d'une base vide. Les médias du projet restent utilisables et Supabase prend le relais dès qu'il publie ses propres ressources.
+          <strong>Architecture hybride :</strong> la vitrine ne dépend pas d'une base vide. Les
+          médias du projet restent utilisables et Supabase prend le relais dès qu'il publie ses
+          propres ressources.
         </span>
       </div>
     </Section>

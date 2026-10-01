@@ -90,7 +90,8 @@ export function MembershipTiers({ tone = "surface" }: { tone?: "surface" | "defa
 
       {!isPending && (tiers ?? []).length === 0 ? (
         <p className="mt-10 text-center text-sm text-muted-foreground">
-          Les catégories d'adhésion sont prêtes et seront actualisées automatiquement dès publication dans Supabase.
+          Les catégories d'adhésion sont prêtes et seront actualisées automatiquement dès
+          publication dans Supabase.
         </p>
       ) : null}
     </Section>

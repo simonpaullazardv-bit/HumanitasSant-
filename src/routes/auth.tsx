@@ -14,7 +14,7 @@ import { useAuth } from "@/hooks/useAuth";
 import {
   requestPasswordReset,
   signInWithGoogle,
-  signInWithPassword,
+  signInWithIdentifier,
   signUpWithPassword,
 } from "@/services/auth.service";
 import { IMAGES } from "@/data/site";
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/auth")({
 });
 
 const loginSchema = z.object({
-  email: z.string().trim().email("Adresse email invalide").max(255),
+  identifier: z.string().trim().min(3, "Identifiant ou email requis").max(255),
   password: z.string().min(8, "8 caractères minimum").max(128),
 });
 
@@ -70,7 +70,7 @@ function safePath(value: string | undefined, fallback: string) {
 function AuthPage() {
   const navigate = useNavigate();
   const search = useSearch({ from: "/auth" });
-  const { isAuthenticated, isLoading, home } = useAuth();
+  const { isAuthenticated, isLoading, home, mustChangePassword } = useAuth();
   const [googleLoading, setGoogleLoading] = useState(false);
 
   // Un utilisateur déjà connecté n'a rien à faire sur la page de connexion.
@@ -78,16 +78,19 @@ function AuthPage() {
     if (!isLoading && isAuthenticated) {
       const stored = sessionStorage.getItem("humanitas:redirect") ?? undefined;
       sessionStorage.removeItem("humanitas:redirect");
-      void navigate({ to: safePath(search.redirect ?? stored, home), replace: true });
+      void navigate({
+        to: mustChangePassword ? "/reinitialisation" : safePath(search.redirect ?? stored, home),
+        replace: true,
+      });
     }
-  }, [isAuthenticated, isLoading, home, navigate, search.redirect]);
+  }, [isAuthenticated, isLoading, home, mustChangePassword, navigate, search.redirect]);
 
   const login = useForm<LoginValues>({ resolver: zodResolver(loginSchema) });
   const signup = useForm<SignupValues>({ resolver: zodResolver(signupSchema) });
 
   const onLogin = async (values: LoginValues) => {
     try {
-      await signInWithPassword(values.email, values.password);
+      await signInWithIdentifier(values.identifier, values.password);
       toast.success("Connexion réussie");
     } catch (error) {
       toast.error(
@@ -134,7 +137,7 @@ function AuthPage() {
   };
 
   const onForgot = async () => {
-    const email = login.getValues("email");
+    const email = login.getValues("identifier");
     const parsed = z.string().email().safeParse(email);
     if (!parsed.success) {
       toast.error("Renseignez d'abord votre adresse email.");
@@ -202,16 +205,17 @@ function AuthPage() {
             <TabsContent value="login" className="mt-6">
               <form onSubmit={login.handleSubmit(onLogin)} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="login-email">Adresse email</Label>
+                  <Label htmlFor="login-identifier">Identifiant / adresse email</Label>
                   <Input
-                    id="login-email"
-                    type="email"
-                    autoComplete="email"
-                    {...login.register("email")}
+                    id="login-identifier"
+                    type="text"
+                    autoComplete="username"
+                    placeholder="HUM-A-XXXXXXXX ou votre email"
+                    {...login.register("identifier")}
                   />
-                  {login.formState.errors.email && (
+                  {login.formState.errors.identifier && (
                     <p className="text-xs text-destructive">
-                      {login.formState.errors.email.message}
+                      {login.formState.errors.identifier.message}
                     </p>
                   )}
                 </div>

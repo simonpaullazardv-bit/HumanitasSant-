@@ -154,7 +154,6 @@ export const CONDITIONS_BLOCKS: ContentBlock[] = [
   },
 ];
 
-
 /** Contenus institutionnels complémentaires issus des supports fournis. */
 export const PRESENTATION_BLOCKS: ContentBlock[] = [
   {

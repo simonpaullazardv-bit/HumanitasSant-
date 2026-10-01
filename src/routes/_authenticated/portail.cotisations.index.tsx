@@ -12,7 +12,14 @@ function CotisationsPage() {
   const config = DASHBOARDS["finance"]!;
   return (
     <AccessGuard
-      allowed={["super_admin", "administrateur", "financier", "coordonnateur", "agent_humanitas", "adherent"]}
+      allowed={[
+        "super_admin",
+        "administrateur",
+        "financier",
+        "coordonnateur",
+        "agent_humanitas",
+        "adherent",
+      ]}
     >
       <DashboardLayout
         title="Cotisations et paiements"

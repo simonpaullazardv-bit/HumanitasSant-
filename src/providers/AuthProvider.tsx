@@ -16,7 +16,15 @@ import type { Profile, UserRole } from "@/types";
 
 export interface AccountContext {
   role: UserRole;
-  contexte: "adherent" | "beneficiaire" | "hopital" | "pharmacie" | "laboratoire" | "centre_bien_etre" | "entreprise" | "staff";
+  contexte:
+    | "adherent"
+    | "beneficiaire"
+    | "hopital"
+    | "pharmacie"
+    | "laboratoire"
+    | "centre_bien_etre"
+    | "entreprise"
+    | "staff";
   adherent_id: string | null;
   beneficiaire_id: string | null;
   partenaire_id: string | null;
@@ -40,6 +48,7 @@ export interface AuthContextValue {
   hasAnyRole: (roles: readonly UserRole[]) => boolean;
   isStaff: boolean;
   isAdmin: boolean;
+  mustChangePassword: boolean;
   accountContext: AccountContext | null;
   refresh: () => Promise<void>;
   signOut: () => Promise<void>;
@@ -72,11 +81,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setProfile((profileRow as Profile | null) ?? null);
     setRoles(nextRoles);
 
-    const { data: contextRows, error: contextError } = await supabase.rpc("mon_contexte_compte" as never, {} as never);
+    const { data: contextRows, error: contextError } = await supabase.rpc(
+      "mon_contexte_compte" as never,
+      {} as never,
+    );
     if (!contextError) {
       const rows = (contextRows ?? []) as AccountContext[];
       const primaryRoleValue = primaryRole(nextRoles);
-      const primary = primaryRoleValue ? rows.find((row) => row.role === primaryRoleValue) : undefined;
+      const primary = primaryRoleValue
+        ? rows.find((row) => row.role === primaryRoleValue)
+        : undefined;
       setAccountContext(primary ?? rows[0] ?? null);
     } else {
       setAccountContext(null);
@@ -141,6 +155,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       hasAnyRole: (candidates) => candidates.some((role) => roles.includes(role)),
       isStaff: STAFF_ROLES.some((role) => roles.includes(role)),
       isAdmin: ADMIN_ROLES.some((role) => roles.includes(role)),
+      mustChangePassword: Boolean(profile?.force_password_change),
       accountContext,
       refresh,
       signOut,

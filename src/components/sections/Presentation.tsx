@@ -26,7 +26,10 @@ function usePresentationQuery() {
           .maybeSingle();
 
         if (!data) return LOCAL_PRESENTATION;
-        return { ...LOCAL_PRESENTATION, ...((data as { value: Record<string, unknown> }).value ?? {}) };
+        return {
+          ...LOCAL_PRESENTATION,
+          ...((data as { value: Record<string, unknown> }).value ?? {}),
+        };
       } catch {
         return LOCAL_PRESENTATION;
       }
@@ -37,10 +40,8 @@ function usePresentationQuery() {
 export function Presentation() {
   const { data: presentation } = usePresentationQuery();
 
-  const title =
-    (presentation?.title as string) || LOCAL_PRESENTATION.title;
-  const text =
-    (presentation?.text as string) || LOCAL_PRESENTATION.text;
+  const title = (presentation?.title as string) || LOCAL_PRESENTATION.title;
+  const text = (presentation?.text as string) || LOCAL_PRESENTATION.text;
   const photoUrl = (presentation?.photoUrl as string) || LOCAL_PRESENTATION.photoUrl;
   const pillars = (presentation?.pillars as string[]) || LOCAL_PRESENTATION.pillars;
 

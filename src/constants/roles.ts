@@ -40,7 +40,8 @@ export const ROLE_LABELS: Record<UserRole, string> = {
 export const ROLE_DESCRIPTIONS: Record<UserRole, string> = {
   super_admin: "Contrôle total : utilisateurs, rôles, configuration et audit.",
   administrateur: "Pilotage de la mutuelle, contenus et référentiels.",
-  directeur_general: "Pilotage stratégique, gouvernance, performance et décisions de Direction Générale.",
+  directeur_general:
+    "Pilotage stratégique, gouvernance, performance et décisions de Direction Générale.",
   coordonnateur: "Suivi des adhésions, des dossiers et du réseau de soins.",
   medecin_conseil: "Validation médicale des prises en charge et prestations.",
   financier: "Cotisations, encaissements, facturation et reporting financier.",

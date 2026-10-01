@@ -10,7 +10,8 @@ import { photoUrlQuery } from "./queries";
 import { SITE } from "@/data/site";
 
 export const VERIFY_BASE =
-  import.meta.env.VITE_PUBLIC_SITE_URL || (typeof window !== "undefined" ? window.location.origin : "");
+  import.meta.env.VITE_PUBLIC_SITE_URL ||
+  (typeof window !== "undefined" ? window.location.origin : "");
 
 function formatDate(value: string | null | undefined) {
   if (!value) return "—";

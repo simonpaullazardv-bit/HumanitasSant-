@@ -315,3 +315,11 @@
     -webkit-print-color-adjust: exact;
   }
 }
+
+
+/* Vitrine publique — finition éditoriale */
+html { scroll-behavior: smooth; }
+body { min-width: 320px; }
+::selection { background: color-mix(in oklab, var(--primary) 25%, white); color: var(--foreground); }
+img { max-width: 100%; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }

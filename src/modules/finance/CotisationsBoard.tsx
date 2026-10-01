@@ -116,7 +116,7 @@ export function CotisationsBoard() {
       toast.success(
         count === 0
           ? "Aucune échéance dépassée à traiter."
-          : `${count} cotisation(s) passée(s) en retard, alertes et historique créés.`,
+          : `${count} cotisation(s) passée(s) en retard et alerte(s) financières mises à jour.`,
       );
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Traitement impossible.");

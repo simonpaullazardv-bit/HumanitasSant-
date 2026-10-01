@@ -11,7 +11,9 @@ export const Route = createFileRoute("/_authenticated/portail/cartes/")({
 function CartesPage() {
   const config = DASHBOARDS["coordination"]!;
   return (
-    <AccessGuard allowed={["super_admin", "administrateur", "coordonnateur", "agent_humanitas"]}>
+    <AccessGuard
+      allowed={["super_admin", "administrateur", "directeur_general", "coordonnateur", "financier"]}
+    >
       <DashboardLayout
         title="Cartes de membre et cartes de service"
         subtitle="Émission, conditions d'impression, QR code sécurisé, réimpression et historiques."

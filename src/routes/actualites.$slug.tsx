@@ -36,9 +36,7 @@ export const Route = createFileRoute("/actualites/$slug")({
           content: `https://humanitassante.org/actualites/${params.slug}`,
         },
       ],
-      links: [
-        { rel: "canonical", href: `https://humanitassante.org/actualites/${params.slug}` },
-      ],
+      links: [{ rel: "canonical", href: `https://humanitassante.org/actualites/${params.slug}` }],
     };
   },
   component: NewsArticlePage,

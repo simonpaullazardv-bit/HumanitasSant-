@@ -71,7 +71,6 @@ export const NAV_GROUPS: NavGroup[] = [
     label: "Aide",
     items: [
       { to: "/faq", label: "FAQ", description: "Questions fréquentes" },
-      { to: "/temoignages", label: "Témoignages", description: "La parole aux adhérents" },
       { to: "/recrutement", label: "Recrutement", description: "Nous rejoindre" },
       { to: "/contact", label: "Contact", description: "Nous écrire ou nous appeler" },
     ],

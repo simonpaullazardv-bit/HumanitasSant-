@@ -44,10 +44,26 @@ export function RapportsBoard() {
       const start = `${periode}-01-01`;
       const end = `${Number(periode) + 1}-01-01`;
       const [adherents, cotisations, prisesEnCharge, remboursements] = await Promise.all([
-        supabase.from("adherents").select("id").gte("date_adhesion", start).lt("date_adhesion", end),
-        supabase.from("paiements").select("montant_usd, created_at").gte("date_paiement", start).lt("date_paiement", end),
-        supabase.from("prises_en_charge").select("id, montant_estime_usd, statut").gte("created_at", start).lt("created_at", end),
-        supabase.from("ordres_remboursement" as never).select("montant_usd, statut, created_at").gte("created_at", start).lt("created_at", end),
+        supabase
+          .from("adherents")
+          .select("id")
+          .gte("date_adhesion", start)
+          .lt("date_adhesion", end),
+        supabase
+          .from("paiements")
+          .select("montant_usd, created_at")
+          .gte("date_paiement", start)
+          .lt("date_paiement", end),
+        supabase
+          .from("prises_en_charge")
+          .select("id, montant_estime_usd, statut")
+          .gte("created_at", start)
+          .lt("created_at", end),
+        supabase
+          .from("ordres_remboursement" as never)
+          .select("montant_usd, statut, created_at")
+          .gte("created_at", start)
+          .lt("created_at", end),
       ]);
 
       const totalCotisations = (cotisations.data ?? []).reduce(
@@ -173,7 +189,9 @@ export function RapportsBoard() {
             <div className="text-2xl font-bold">
               {stats ? `${stats.totalRemboursements.toLocaleString("fr-FR")} $` : "—"}
             </div>
-            <p className="text-xs text-muted-foreground">Montant réellement enregistré sur la période</p>
+            <p className="text-xs text-muted-foreground">
+              Montant réellement enregistré sur la période
+            </p>
           </CardContent>
         </Card>
 
@@ -195,16 +213,42 @@ export function RapportsBoard() {
       <Card className="border-border/60 bg-card/80 backdrop-blur">
         <CardHeader>
           <CardTitle>Synthèse réelle de la période</CardTitle>
-          <CardDescription>Les valeurs ci-dessous sont calculées uniquement à partir des enregistrements Supabase de {periode}.</CardDescription>
+          <CardDescription>
+            Les valeurs ci-dessous sont calculées uniquement à partir des enregistrements Supabase
+            de {periode}.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
-            <TableHeader><TableRow><TableHead>Indicateur</TableHead><TableHead>Valeur réelle</TableHead></TableRow></TableHeader>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Indicateur</TableHead>
+                <TableHead>Valeur réelle</TableHead>
+              </TableRow>
+            </TableHeader>
             <TableBody>
-              <TableRow><TableCell>Adhésions enregistrées</TableCell><TableCell className="font-mono">{stats?.totalAdherents ?? "—"}</TableCell></TableRow>
-              <TableRow><TableCell>Encaissements de paiements</TableCell><TableCell className="font-mono">{stats ? `${stats.totalCotisations.toLocaleString("fr-FR")} USD` : "—"}</TableCell></TableRow>
-              <TableRow><TableCell>Remboursements enregistrés</TableCell><TableCell className="font-mono">{stats ? `${stats.totalRemboursements.toLocaleString("fr-FR")} USD` : "—"}</TableCell></TableRow>
-              <TableRow><TableCell>Écart calculé sur les deux agrégats</TableCell><TableCell className="font-mono">{stats ? `${stats.soldeNet.toLocaleString("fr-FR")} USD` : "—"}</TableCell></TableRow>
+              <TableRow>
+                <TableCell>Adhésions enregistrées</TableCell>
+                <TableCell className="font-mono">{stats?.totalAdherents ?? "—"}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Encaissements de paiements</TableCell>
+                <TableCell className="font-mono">
+                  {stats ? `${stats.totalCotisations.toLocaleString("fr-FR")} USD` : "—"}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Remboursements enregistrés</TableCell>
+                <TableCell className="font-mono">
+                  {stats ? `${stats.totalRemboursements.toLocaleString("fr-FR")} USD` : "—"}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Écart calculé sur les deux agrégats</TableCell>
+                <TableCell className="font-mono">
+                  {stats ? `${stats.soldeNet.toLocaleString("fr-FR")} USD` : "—"}
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </CardContent>

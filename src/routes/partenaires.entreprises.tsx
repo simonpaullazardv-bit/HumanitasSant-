@@ -17,9 +17,7 @@ export const Route = createFileRoute("/partenaires/entreprises")({
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "https://humanitassante.org/partenaires/entreprises" },
     ],
-    links: [
-      { rel: "canonical", href: "https://humanitassante.org/partenaires/entreprises" },
-    ],
+    links: [{ rel: "canonical", href: "https://humanitassante.org/partenaires/entreprises" }],
   }),
   component: EntreprisesPage,
 });

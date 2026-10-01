@@ -19,9 +19,7 @@ export const Route = createFileRoute("/partenaires/laboratoires")({
         content: "https://humanitassante.org/partenaires/laboratoires",
       },
     ],
-    links: [
-      { rel: "canonical", href: "https://humanitassante.org/partenaires/laboratoires" },
-    ],
+    links: [{ rel: "canonical", href: "https://humanitassante.org/partenaires/laboratoires" }],
   }),
   component: LaboratoiresPage,
 });

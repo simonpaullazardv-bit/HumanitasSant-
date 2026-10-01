@@ -4,13 +4,7 @@
  */
 import { useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  Bell,
-  BellRing,
-  CheckCheck,
-  Clock,
-  Sliders,
-} from "lucide-react";
+import { Bell, BellRing, CheckCheck, Clock, Sliders } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -290,7 +284,9 @@ export function NotificationsBoard() {
                 disabled={savePreferencesMutation.isPending || !user}
                 className="w-full"
               >
-                {savePreferencesMutation.isPending ? "Enregistrement…" : "Sauvegarder mes préférences"}
+                {savePreferencesMutation.isPending
+                  ? "Enregistrement…"
+                  : "Sauvegarder mes préférences"}
               </Button>
             </CardContent>
           </Card>

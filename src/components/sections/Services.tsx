@@ -48,7 +48,8 @@ export function Services() {
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
               Du dépistage préventif aux interventions chirurgicales complexes, nos adhérents
-              bénéficient d'une prise en charge directe dans les établissements et professionnels de santé conventionnés et publiés par Humanitas.
+              bénéficient d'une prise en charge directe dans les établissements et professionnels de
+              santé conventionnés et publiés par Humanitas.
             </p>
           </div>
           <div className="relative h-64 sm:h-80 lg:h-full overflow-hidden">

@@ -42,7 +42,7 @@ function GalleryPage() {
         <SectionHeading
           eyebrow="Galerie photos"
           title="Nos activités en images"
-          description="Médias publiés depuis la médiathèque interne, servis via des liens sécurisés."
+          description="La galerie réunit automatiquement les médias du projet public et ceux publiés dans Supabase lorsqu’ils sont disponibles."
         />
         {photos.length === 0 ? (
           <p className="mt-10 text-center text-sm text-muted-foreground">
@@ -75,7 +75,7 @@ function GalleryPage() {
         <SectionHeading
           eyebrow="Galerie vidéos"
           title="Humanitas en mouvement"
-          description="Reportages et capsules d'information de la mutuelle."
+          description="Reportages et capsules d’information provenant du projet local et/ou de Supabase."
         />
         {allVideos.length === 0 ? (
           <p className="mt-10 text-center text-sm text-muted-foreground">

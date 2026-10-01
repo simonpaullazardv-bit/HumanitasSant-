@@ -193,13 +193,30 @@ export function ControleEligibilite({
           ) : null}
 
           <div className="mb-4 flex items-center gap-4 rounded-xl border border-border/60 bg-card p-3">
-            {result.photo_url ? <img src={result.photo_url} alt="Photo du membre vérifié" className="size-16 rounded-xl object-cover" /> : <div className="size-16 rounded-xl bg-muted" />}
-            <div><p className="font-semibold">{result.titulaire ?? "Membre Humanitas"}</p><p className="text-xs text-muted-foreground">{result.categorie?.nom ?? "Catégorie non publiée"} · {result.etat_couverture ?? result.statut ?? "État non disponible"}</p></div>
+            {result.photo_url ? (
+              <img
+                src={result.photo_url}
+                alt="Photo du membre vérifié"
+                className="size-16 rounded-xl object-cover"
+              />
+            ) : (
+              <div className="size-16 rounded-xl bg-muted" />
+            )}
+            <div>
+              <p className="font-semibold">{result.titulaire ?? "Membre Humanitas"}</p>
+              <p className="text-xs text-muted-foreground">
+                {result.categorie?.nom ?? "Catégorie non publiée"} ·{" "}
+                {result.etat_couverture ?? result.statut ?? "État non disponible"}
+              </p>
+            </div>
           </div>
           <dl className="grid gap-2 sm:grid-cols-2">
             <div>
               <dt className="text-muted-foreground">Personne</dt>
-              <dd>{result.titulaire ?? "—"} · {result.type_personne === "beneficiaire" ? "Bénéficiaire" : "Adhérent"}</dd>
+              <dd>
+                {result.titulaire ?? "—"} ·{" "}
+                {result.type_personne === "beneficiaire" ? "Bénéficiaire" : "Adhérent"}
+              </dd>
             </div>
             <div>
               <dt className="text-muted-foreground">Code</dt>
@@ -221,7 +238,6 @@ export function ControleEligibilite({
               <dd>{result.categorie?.nom ?? "—"}</dd>
             </div>
           </dl>
-
         </div>
       ) : null}
     </div>

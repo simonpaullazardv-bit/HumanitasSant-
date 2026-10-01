@@ -10,16 +10,42 @@ import { LOCAL_PUBLIC_IMAGE_URLS, LOCAL_PUBLIC_VIDEO_URLS } from "@/data/public-
 
 export const LOCAL_SITE_SETTINGS = [
   { cle: "contact_telephone", categorie: "contact", valeur: JSON.stringify("+243 844 433 025") },
-  { cle: "contact_telephone_secondaire", categorie: "contact", valeur: JSON.stringify("+243 900 000 000") },
-  { cle: "contact_email", categorie: "contact", valeur: JSON.stringify("contact@humanitassante.org") },
-  { cle: "contact_email_info", categorie: "contact", valeur: JSON.stringify("info@humanitassante.org") },
-  { cle: "contact_email_admin", categorie: "contact", valeur: JSON.stringify("admin@humanitassante.org") },
-  { cle: "contact_email_dg", categorie: "contact", valeur: JSON.stringify("dg@humanitassante.org") },
-  { cle: "contact_email_coordo", categorie: "contact", valeur: JSON.stringify("coordo@humanitassante.org") },
+  {
+    cle: "contact_telephone_secondaire",
+    categorie: "contact",
+    valeur: JSON.stringify("+243 900 000 000"),
+  },
+  {
+    cle: "contact_email",
+    categorie: "contact",
+    valeur: JSON.stringify("contact@humanitassante.org"),
+  },
+  {
+    cle: "contact_email_info",
+    categorie: "contact",
+    valeur: JSON.stringify("info@humanitassante.org"),
+  },
+  {
+    cle: "contact_email_admin",
+    categorie: "contact",
+    valeur: JSON.stringify("admin@humanitassante.org"),
+  },
+  {
+    cle: "contact_email_dg",
+    categorie: "contact",
+    valeur: JSON.stringify("dg@humanitassante.org"),
+  },
+  {
+    cle: "contact_email_coordo",
+    categorie: "contact",
+    valeur: JSON.stringify("coordo@humanitassante.org"),
+  },
   {
     cle: "contact_adresse",
     categorie: "contact",
-    valeur: JSON.stringify("12, PLAZZA, avenue Mavinga, Quartier Bahumbu, Commune de la N'SELE, ville de Kinshasa"),
+    valeur: JSON.stringify(
+      "12, PLAZZA, avenue Mavinga, Quartier Bahumbu, Commune de la N'SELE, ville de Kinshasa",
+    ),
   },
   {
     cle: "contact_adresse_2",
@@ -40,12 +66,32 @@ export const LOCAL_SITE_SETTINGS = [
 ];
 
 export const LOCAL_SOCIAL_LINKS = [
-  { plateforme: "facebook", url: "https://facebook.com/humanitassante", libelle: "Facebook", ordre: 1 },
+  {
+    plateforme: "facebook",
+    url: "https://facebook.com/humanitassante",
+    libelle: "Facebook",
+    ordre: 1,
+  },
   { plateforme: "whatsapp", url: "https://wa.me/243844433025", libelle: "WhatsApp", ordre: 2 },
-  { plateforme: "instagram", url: "https://instagram.com/humanitassante", libelle: "Instagram", ordre: 3 },
+  {
+    plateforme: "instagram",
+    url: "https://instagram.com/humanitassante",
+    libelle: "Instagram",
+    ordre: 3,
+  },
   { plateforme: "tiktok", url: "https://tiktok.com/@humanitassante", libelle: "TikTok", ordre: 4 },
-  { plateforme: "youtube", url: "https://youtube.com/@humanitassante", libelle: "YouTube", ordre: 5 },
-  { plateforme: "linkedin", url: "https://linkedin.com/company/humanitassante", libelle: "LinkedIn", ordre: 6 },
+  {
+    plateforme: "youtube",
+    url: "https://youtube.com/@humanitassante",
+    libelle: "YouTube",
+    ordre: 5,
+  },
+  {
+    plateforme: "linkedin",
+    url: "https://linkedin.com/company/humanitassante",
+    libelle: "LinkedIn",
+    ordre: 6,
+  },
   { plateforme: "x", url: "https://x.com/humanitassante", libelle: "X", ordre: 7 },
 ];
 
@@ -57,11 +103,16 @@ export const LOCAL_MEMBERSHIP_TIERS = [
     prix_usd: 25,
     periode: "mois",
     tagline: "Une couverture de base solide pour les besoins essentiels.",
-    description: "Couverture de base : consultations, premiers soins, réduction des frais médicaux et orientation.",
+    description:
+      "Couverture de base : consultations, premiers soins, réduction des frais médicaux et orientation.",
     plafond_usd: null,
     taux_couverture: null,
     couverture_label: "Couverture de base",
-    avantages: ["Consultations et premiers soins", "Orientation médicale", "Réduction des frais médicaux"],
+    avantages: [
+      "Consultations et premiers soins",
+      "Orientation médicale",
+      "Réduction des frais médicaux",
+    ],
     ordre: 1,
     mise_en_avant: false,
   },
@@ -72,11 +123,16 @@ export const LOCAL_MEMBERSHIP_TIERS = [
     prix_usd: 50,
     periode: "mois",
     tagline: "Une couverture élargie et un remboursement amélioré.",
-    description: "Couverture intermédiaire : consultations, examens de base et prise en charge partielle des hospitalisations.",
+    description:
+      "Couverture intermédiaire : consultations, examens de base et prise en charge partielle des hospitalisations.",
     plafond_usd: null,
     taux_couverture: null,
     couverture_label: "Couverture intermédiaire",
-    avantages: ["Consultations", "Examens de base", "Prise en charge partielle des hospitalisations"],
+    avantages: [
+      "Consultations",
+      "Examens de base",
+      "Prise en charge partielle des hospitalisations",
+    ],
     ordre: 2,
     mise_en_avant: false,
   },
@@ -87,11 +143,16 @@ export const LOCAL_MEMBERSHIP_TIERS = [
     prix_usd: 75,
     periode: "mois",
     tagline: "Des avantages exclusifs et un niveau de remboursement supérieur.",
-    description: "Couverture étendue : consultations, examens et hospitalisations partielles, avec médicaments essentiels.",
+    description:
+      "Couverture étendue : consultations, examens et hospitalisations partielles, avec médicaments essentiels.",
     plafond_usd: null,
     taux_couverture: null,
     couverture_label: "Couverture étendue",
-    avantages: ["Consultations et examens", "Hospitalisations selon les droits", "Médicaments essentiels"],
+    avantages: [
+      "Consultations et examens",
+      "Hospitalisations selon les droits",
+      "Médicaments essentiels",
+    ],
     ordre: 3,
     mise_en_avant: true,
   },
@@ -102,11 +163,17 @@ export const LOCAL_MEMBERSHIP_TIERS = [
     prix_usd: 100,
     periode: "mois",
     tagline: "La couverture la plus complète pour une sérénité maximale.",
-    description: "Couverture médicale la plus complète, selon les droits ouverts et les conditions publiées par Humanitas.",
+    description:
+      "Couverture médicale la plus complète, selon les droits ouverts et les conditions publiées par Humanitas.",
     plafond_usd: null,
     taux_couverture: null,
     couverture_label: "Couverture la plus complète",
-    avantages: ["Consultations et examens", "Hospitalisation", "Médicaments essentiels", "Urgences selon les droits ouverts"],
+    avantages: [
+      "Consultations et examens",
+      "Hospitalisation",
+      "Médicaments essentiels",
+      "Urgences selon les droits ouverts",
+    ],
     ordre: 4,
     mise_en_avant: false,
   },
@@ -117,7 +184,8 @@ export const LOCAL_INSTITUTIONAL_PARTNERS = [
     id: "local-lph",
     name: "Lumen Pacis Humanitas (LPH)",
     category: "Organisation partenaire / réseau Humanitas",
-    description: "Lumen Pacis Humanitas accompagne l'action humanitaire et institutionnelle portée autour de la vision Humanitas.",
+    description:
+      "Lumen Pacis Humanitas accompagne l'action humanitaire et institutionnelle portée autour de la vision Humanitas.",
     type: "institutionnel",
   },
   {
@@ -208,7 +276,6 @@ export const LOCAL_MEDIA_IMAGES = LOCAL_VITRINE_IMAGES.map((url, index) => ({
   created_at: `2026-08-13T00:${String(index).padStart(2, "0")}:00.000Z`,
   url,
 }));
-
 
 export const LOCAL_MEDIA_VIDEOS = LOCAL_VIDEO_URLS.map((url, index) => ({
   id: `local-video-${index + 1}`,

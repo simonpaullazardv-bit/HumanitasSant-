@@ -18,6 +18,24 @@ export async function signInWithPassword(email: string, password: string) {
   return data;
 }
 
+export async function signInWithUsername(username: string, password: string) {
+  const { data: resolved, error: resolveError } = await supabase.functions.invoke(
+    "resolve-username-login",
+    { body: { username: username.trim() } },
+  );
+  if (resolveError || !resolved?.email) {
+    throw new Error("Identifiant ou mot de passe incorrect.");
+  }
+  return signInWithPassword(resolved.email, password);
+}
+
+export async function signInWithIdentifier(identifier: string, password: string) {
+  const value = identifier.trim();
+  return value.includes("@")
+    ? signInWithPassword(value, password)
+    : signInWithUsername(value, password);
+}
+
 export async function signUpWithPassword({ email, password, fullName, phone }: SignUpPayload) {
   const { data, error } = await supabase.auth.signUp({
     email,

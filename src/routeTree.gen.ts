@@ -29,6 +29,7 @@ import { Route as PartenairesRouteImport } from './routes/partenaires'
 import { Route as PartenariatRouteImport } from './routes/partenariat'
 import { Route as RealisationsRouteImport } from './routes/realisations'
 import { Route as RecrutementRouteImport } from './routes/recrutement'
+import { Route as ReinitialisationRouteImport } from './routes/reinitialisation'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TarifsRouteImport } from './routes/tarifs'
@@ -175,6 +176,11 @@ const RealisationsRoute = RealisationsRouteImport.update({
 const RecrutementRoute = RecrutementRouteImport.update({
   id: '/recrutement',
   path: '/recrutement',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReinitialisationRoute = ReinitialisationRouteImport.update({
+  id: '/reinitialisation',
+  path: '/reinitialisation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -467,6 +473,7 @@ export interface FileRoutesByFullPath {
   '/partenariat': typeof PartenariatRoute
   '/realisations': typeof RealisationsRoute
   '/recrutement': typeof RecrutementRoute
+  '/reinitialisation': typeof ReinitialisationRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tarifs': typeof TarifsRoute
@@ -533,6 +540,7 @@ export interface FileRoutesByTo {
   '/partenariat': typeof PartenariatRoute
   '/realisations': typeof RealisationsRoute
   '/recrutement': typeof RecrutementRoute
+  '/reinitialisation': typeof ReinitialisationRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tarifs': typeof TarifsRoute
@@ -604,6 +612,7 @@ export interface FileRoutesById {
   '/partenariat': typeof PartenariatRoute
   '/realisations': typeof RealisationsRoute
   '/recrutement': typeof RecrutementRoute
+  '/reinitialisation': typeof ReinitialisationRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tarifs': typeof TarifsRoute
@@ -675,6 +684,7 @@ export interface FileRouteTypes {
     | '/partenariat'
     | '/realisations'
     | '/recrutement'
+    | '/reinitialisation'
     | '/services'
     | '/sitemap.xml'
     | '/tarifs'
@@ -741,6 +751,7 @@ export interface FileRouteTypes {
     | '/partenariat'
     | '/realisations'
     | '/recrutement'
+    | '/reinitialisation'
     | '/services'
     | '/sitemap.xml'
     | '/tarifs'
@@ -811,6 +822,7 @@ export interface FileRouteTypes {
     | '/partenariat'
     | '/realisations'
     | '/recrutement'
+    | '/reinitialisation'
     | '/services'
     | '/sitemap.xml'
     | '/tarifs'
@@ -882,6 +894,7 @@ export interface RootRouteChildren {
   PartenariatRoute: typeof PartenariatRoute
   RealisationsRoute: typeof RealisationsRoute
   RecrutementRoute: typeof RecrutementRoute
+  ReinitialisationRoute: typeof ReinitialisationRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TarifsRoute: typeof TarifsRoute
@@ -1032,6 +1045,13 @@ declare module '@tanstack/react-router' {
       path: '/recrutement'
       fullPath: '/recrutement'
       preLoaderRoute: typeof RecrutementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reinitialisation': {
+      id: '/reinitialisation'
+      path: '/reinitialisation'
+      fullPath: '/reinitialisation'
+      preLoaderRoute: typeof ReinitialisationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -1524,6 +1544,7 @@ const rootRouteChildren: RootRouteChildren = {
   PartenariatRoute: PartenariatRoute,
   RealisationsRoute: RealisationsRoute,
   RecrutementRoute: RecrutementRoute,
+  ReinitialisationRoute: ReinitialisationRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TarifsRoute: TarifsRoute,

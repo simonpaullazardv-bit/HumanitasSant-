@@ -103,12 +103,17 @@ export function AdherentDialog({ open, onOpenChange, adherent, onSaved }: Props)
   const entreprises = useQuery(entreprisesQuery());
   const save = useSaveAdherent();
   const [error, setError] = useState<string | null>(null);
+  const [credentials, setCredentials] = useState<{
+    username: string;
+    temporaryPassword: string;
+  } | null>(null);
 
   const form = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues: empty });
 
   useEffect(() => {
     if (!open) return;
     setError(null);
+    setCredentials(null);
     if (adherent) {
       form.reset({
         ...empty,
@@ -125,12 +130,17 @@ export function AdherentDialog({ open, onOpenChange, adherent, onSaved }: Props)
     setError(null);
     try {
       const payload = blankToNull(values) as never;
-      const row = await save.mutateAsync(
+      const result = await save.mutateAsync(
         adherent ? { id: adherent.id, values: payload } : { values: payload },
       );
-      toast.success(
-        adherent ? "Dossier adhérent mis à jour." : `Adhérent créé — n° ${row.matricule}`,
-      );
+      const row = "row" in result ? result.row : result;
+      if (!adherent && "credentials" in result) {
+        setCredentials(result.credentials);
+        toast.success(`Adhérent créé — n° ${row.matricule}`);
+        onSaved?.(row.id);
+        return;
+      }
+      toast.success("Dossier adhérent mis à jour.");
       onOpenChange(false);
       onSaved?.(row.id);
     } catch (cause) {
@@ -274,13 +284,39 @@ export function AdherentDialog({ open, onOpenChange, adherent, onSaved }: Props)
 
           {error && <p className="text-sm text-destructive">{error}</p>}
 
+          {credentials && (
+            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4">
+              <p className="font-semibold text-foreground">
+                Compte créé — à transmettre immédiatement
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Le mot de passe temporaire ne sera plus affiché après fermeture de cette fenêtre.
+              </p>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-xl bg-background p-3">
+                  <p className="text-xs text-muted-foreground">Identifiant</p>
+                  <p className="font-mono font-semibold">{credentials.username}</p>
+                </div>
+                <div className="rounded-xl bg-background p-3">
+                  <p className="text-xs text-muted-foreground">Mot de passe temporaire</p>
+                  <p className="font-mono font-semibold">{credentials.temporaryPassword}</p>
+                </div>
+              </div>
+              <p className="mt-3 text-xs text-muted-foreground">
+                À la première connexion, l'adhérent devra choisir son mot de passe personnel.
+              </p>
+            </div>
+          )}
+
           <DialogFooter>
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-              Annuler
+              {credentials ? "Fermer" : "Annuler"}
             </Button>
-            <Button type="submit" disabled={save.isPending}>
-              {save.isPending ? "Enregistrement…" : "Enregistrer"}
-            </Button>
+            {!credentials && (
+              <Button type="submit" disabled={save.isPending}>
+                {save.isPending ? "Enregistrement…" : "Enregistrer"}
+              </Button>
+            )}
           </DialogFooter>
         </form>
       </DialogContent>

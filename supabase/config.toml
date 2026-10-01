@@ -1,1 +1,7 @@
 project_id = "urlyhjvlmqsetwrualbp"
+
+[functions.create-adherent-account]
+verify_jwt = true
+
+[functions.resolve-username-login]
+verify_jwt = false

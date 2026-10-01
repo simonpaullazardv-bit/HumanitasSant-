@@ -375,12 +375,22 @@ export const getMediaLibrary = createServerFn({ method: "GET" })
       // enrichit la vitrine, mais ne rend jamais public le site dépendant
       // d'une base vide ou momentanément indisponible.
       const remoteUrls = new Set(remote.map((item) => item.url).filter(Boolean));
-      const local = data.type === "video" ? localVideos : data.type === "image" ? localImages : [...localImages, ...localVideos];
+      const local =
+        data.type === "video"
+          ? localVideos
+          : data.type === "image"
+            ? localImages
+            : [...localImages, ...localVideos];
       const merged = [...remote, ...local.filter((item) => !remoteUrls.has(item.url))];
       return data.limit ? merged.slice(0, data.limit) : merged;
     } catch {
       // Supabase indisponible : la vitrine continue avec les médias locaux.
-      const local = data.type === "video" ? localVideos : data.type === "image" ? localImages : [...localImages, ...localVideos];
+      const local =
+        data.type === "video"
+          ? localVideos
+          : data.type === "image"
+            ? localImages
+            : [...localImages, ...localVideos];
       return data.limit ? local.slice(0, data.limit) : local;
     }
   });

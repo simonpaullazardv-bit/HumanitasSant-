@@ -24,8 +24,19 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
     });
     return () => controls.stop();
   }, [inView, value]);
-  const formatted = value % 1 !== 0 ? display.toFixed(1).replace(".", ",") : Math.round(display).toLocaleString("fr-FR");
-  return <p ref={ref} className="font-display text-3xl font-bold text-primary-foreground sm:text-4xl lg:text-5xl">{formatted}{suffix}</p>;
+  const formatted =
+    value % 1 !== 0
+      ? display.toFixed(1).replace(".", ",")
+      : Math.round(display).toLocaleString("fr-FR");
+  return (
+    <p
+      ref={ref}
+      className="font-display text-3xl font-bold text-primary-foreground sm:text-4xl lg:text-5xl"
+    >
+      {formatted}
+      {suffix}
+    </p>
+  );
 }
 
 export function Stats() {
@@ -40,7 +51,10 @@ export function Stats() {
           .maybeSingle();
         if (error) throw error;
         const raw = Array.isArray(data?.value?.items) ? data.value.items : [];
-        return raw.filter((item: any) => item && typeof item.label === "string" && Number.isFinite(Number(item.value))) as PublicStat[];
+        return raw.filter(
+          (item: any) =>
+            item && typeof item.label === "string" && Number.isFinite(Number(item.value)),
+        ) as PublicStat[];
       } catch {
         // Aucune statistique locale de substitution : le site n'affiche jamais de chiffre inventé.
         return [];
@@ -56,8 +70,12 @@ export function Stats() {
         {stats.map((stat) => (
           <div key={`${stat.label}-${stat.value}`} className="text-center">
             <Counter value={Number(stat.value)} suffix={stat.suffix ?? ""} />
-            <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-primary-foreground/80 sm:text-sm">{stat.label}</p>
-            {stat.source ? <p className="mt-1 text-[10px] text-primary-foreground/60">Source : {stat.source}</p> : null}
+            <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-primary-foreground/80 sm:text-sm">
+              {stat.label}
+            </p>
+            {stat.source ? (
+              <p className="mt-1 text-[10px] text-primary-foreground/60">Source : {stat.source}</p>
+            ) : null}
           </div>
         ))}
       </div>

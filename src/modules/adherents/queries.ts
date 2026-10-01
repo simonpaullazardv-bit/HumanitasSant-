@@ -285,15 +285,17 @@ export function useSaveAdherent() {
         if (error) throw error;
         return data as unknown as AdherentRow;
       }
-      const { data, error } = await supabase
-        .from("adherents")
-        .insert(values as never)
-        .select("*")
-        .single();
+      const { data, error } = await supabase.functions.invoke("create-adherent-account", {
+        body: values,
+      });
       if (error) throw error;
-      return data as unknown as AdherentRow;
+      if (!data?.row) throw new Error("Le compte adhérent n'a pas pu être créé.");
+      return data as {
+        row: AdherentRow;
+        credentials: { username: string; temporaryPassword: string };
+      };
     },
-    onSuccess: (row) => invalidate(row.id),
+    onSuccess: (result) => invalidate("row" in result ? result.row.id : result.id),
   });
 }
 

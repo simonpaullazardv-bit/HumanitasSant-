@@ -7,7 +7,13 @@ import { Quote, Sparkles, HeartPulse, ShieldCheck, ArrowRight, BookOpen } from "
 import { Reveal } from "@/components/shared/Reveal";
 import { Section } from "@/components/shared/Section";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 interface DirectorPublicData {
   name?: string;
@@ -74,7 +80,9 @@ export function DirectorMessage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
               <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/30 bg-white/90 px-5 py-4 text-center shadow-lg backdrop-blur">
-                <p className="font-display text-base font-extrabold text-foreground">{directorName}</p>
+                <p className="font-display text-base font-extrabold text-foreground">
+                  {directorName}
+                </p>
                 <p className="text-xs font-bold text-primary">{directorTitle}</p>
               </div>
             </div>
@@ -83,13 +91,18 @@ export function DirectorMessage() {
           <Reveal>
             <div className="space-y-6">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
-                <Sparkles className="size-4 text-amber-500" /> Vision, Solidarité & Engagement Humanitaire
+                <Sparkles className="size-4 text-amber-500" /> Vision, Solidarité & Engagement
+                Humanitaire
               </div>
               <h3 className="font-display text-2xl font-bold leading-tight text-foreground sm:text-3xl">
-                « Une mutuelle moderne, scientifique, humaine et digne de la confiance de ses adhérents. »
+                « Une mutuelle moderne, scientifique, humaine et digne de la confiance de ses
+                adhérents. »
               </h3>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Le message officiel de la Direction Générale est conservé comme un visuel institutionnel afin de préserver sa mise en page, son identité graphique et son contenu validé. La zone reste prête à être alimentée par Supabase lorsque la publication dynamique sera activée.
+                Le message officiel de la Direction Générale est conservé comme un visuel
+                institutionnel afin de préserver sa mise en page, son identité graphique et son
+                contenu validé. La zone reste prête à être alimentée par Supabase lorsque la
+                publication dynamique sera activée.
               </p>
               <div className="flex flex-wrap gap-2">
                 <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
@@ -99,7 +112,11 @@ export function DirectorMessage() {
                   <HeartPulse className="size-3.5 text-rose-600" /> Couverture & Prévention
                 </span>
               </div>
-              <Button onClick={() => setModalOpen(true)} size="lg" className="gap-2 bg-gradient-brand font-bold shadow-3d-soft">
+              <Button
+                onClick={() => setModalOpen(true)}
+                size="lg"
+                className="gap-2 bg-gradient-brand font-bold shadow-3d-soft"
+              >
                 <BookOpen className="size-4" /> Voir le message officiel
                 <ArrowRight className="size-4" />
               </Button>
@@ -112,7 +129,9 @@ export function DirectorMessage() {
         <DialogContent className="max-h-[92vh] max-w-4xl overflow-y-auto rounded-3xl border-primary/20 bg-card p-4 shadow-3d-elevated sm:p-6">
           <DialogHeader className="sr-only">
             <DialogTitle>Message officiel de la Direction Générale</DialogTitle>
-            <DialogDescription>{directorName} — {directorTitle}</DialogDescription>
+            <DialogDescription>
+              {directorName} — {directorTitle}
+            </DialogDescription>
           </DialogHeader>
           <div className="overflow-hidden rounded-2xl border border-border/70 bg-white shadow-soft">
             <img
